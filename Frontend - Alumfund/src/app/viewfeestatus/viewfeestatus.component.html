@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light" id="navbar1">
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+           <a href="postlogin" id="logoutbutton" class="nav-link">Dashboard</a> 
+      </li>
+    </ul>
+    </nav>
+
+    <div [ngSwitch]="feePaid">
+        <div *ngSwitchCase= "1">
+                <h2 style="color: green; text-align: center;font-weight: 700; padding-top: 2%;">Congratulations!!</h2>
+                <h5 style="text-align: center; padding-top: 2%;">{{message}}</h5>
+                <h5 style="text-align: center; ">Please download the fee receipt below.</h5>
+                <input type="button" value="Print Receipt" style="text-align: center; margin:3% 0% 0% 46%;">
+        </div>
+        <div *ngSwitchCase = "0">
+            <h4 style="color: rgb(19, 19, 138); text-align: center;font-weight: 700 ; padding-top: 2%;">{{message}}</h4>
+            
+        </div>
+    </div>

@@ -1,0 +1,308 @@
+/* body{
+	background-color: #eee;
+}
+.card{
+	width: 340px;
+	border-radius: 35px;
+	background-color: #fff;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.total-amount{
+	font-size: 22px;
+	font-weight: 700;
+	color: #383737;
+}
+.amount-container{
+	background-color: #e9eaeb;
+	padding: 6px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 8px;
+}
+.amount-text{
+	font-size: 20px;
+	font-weight: 700;
+	color: #673AB7;
+}
+.dollar-sign{
+	font-size: 20px;
+	font-weight: 700;
+	color: #000;
+}
+.label-text{
+	font-size: 16px;
+	font-weight: 600;
+	color: #b2b2b2;
+}
+.credit-card-number{
+	width: 290px;
+	z-index: 28;
+	border: 2px solid #ced4da;
+	border-radius: 6px;
+	font-weight: 600;
+}
+.credit-card-number:focus {
+	box-shadow: none;
+	border: 2px solid #673AB7;
+}
+.visa-icon{
+	position: relative;
+	top: 42px;
+    right: 14px;
+	z-index: 30;
+}
+.expiry-class{
+	width: 120px;
+	border: 2px solid #ced4da;
+	font-weight: 600;
+	font-size: 12px;
+	height: 48px;	
+
+}
+.expiry-class:focus{
+	box-shadow: none;
+	border: 2px solid #673AB7;
+}
+
+.cvv-class{
+	width: 120px;
+	border: 2px solid #ced4da;
+	font-weight: 600;
+	font-size: 12px;
+	height: 48px;
+
+}
+.cvv-class:focus{
+	box-shadow: none;
+	border: 2px solid #673AB7;
+}
+.payment-btn{
+	background-color: #673AB7;
+	padding: 15px;
+	padding-left: 25px;
+	padding-right: 25px;
+	color: #fff;
+	font-weight: 600;
+	border-radius: 12px;
+}
+.payment-btn:hover{
+	box-shadow: none;
+	color: #fff;
+}
+.cancel-btn{
+	background-color: #fff;
+	color: #b2b2b2;
+	padding: 0px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-weight: 600;
+	border-radius: 6px;
+}
+.cancel-btn:hover{
+	border: 2px solid #b2b2b2;
+	color: #b2b2b2;
+}
+.cancel-btn:focus{
+	box-shadow: none;
+}
+.label-text-cc-number{
+	position: relative;
+	top: 4px;
+} */
+
+
+
+body{
+    background: #ddd;
+    min-height: 100vh;
+    vertical-align: middle;
+    display: flex;
+    
+}
+.card{
+    margin: auto;
+    width: 600px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.mt-50 {
+    margin-top: 50px
+}
+
+.mb-50 {
+    margin-bottom: 50px
+}
+
+
+@media(max-width:767px){
+    .card{
+        width: 90%;
+        padding: 1.5rem;
+    }
+}
+@media(height:1366px){
+    .card{
+        width: 90%;
+        padding: 8vh;
+    }
+}
+.card-title{
+    font-weight: 700;
+    font-size: 2.5em;
+}
+.nav{
+    display: flex;
+}
+.nav ul{
+    list-style-type: none;
+    display: flex;
+    padding-inline-start: unset;
+    margin-bottom: 6vh;
+}
+.nav li{
+    padding: 1rem;
+}
+.nav li a{
+    color: black;
+    text-decoration: none;
+}
+.active{
+    border-bottom: 2px solid black;
+    font-weight: bold;
+}
+
+input{
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    width: 100%;
+    min-width: unset;
+    background-color: transparent;
+    border-color: transparent;
+    margin: 0;
+}
+form a{
+    color:grey;
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: bold;
+}
+form a:hover{
+    color:grey;
+    text-decoration: none;
+}
+form .row{
+    margin: 0;
+    overflow: hidden;
+}
+form .row-1{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 0.5rem;
+    outline: none;
+    width: 100%;
+    min-width: unset;
+    border-radius: 5px;
+    background-color: rgba(221, 228, 236, 0.301);
+    border-color: rgba(221, 228, 236, 0.459);
+    margin: 2vh 0;
+    overflow: hidden;
+}
+form .row-2{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 0.8rem;
+}
+form .row .row-2{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 0.8rem;
+}
+form .row .col-2,.col-7,.col-3{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0 1vh;
+}
+form .row .col-2{
+    padding-right: 0;
+}
+
+#card-header{
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+#card-inner{
+    font-size: 0.7rem;
+    color: gray;
+}
+.three .col-7{
+    padding-left: 0;
+}
+.three{
+    overflow: hidden;
+    justify-content: space-between;
+}
+.three .col-2{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 0.5rem;
+    outline: none;
+    width: 100%;
+    min-width: unset;
+    border-radius: 5px;
+    background-color: rgba(221, 228, 236, 0.301);
+    border-color: rgba(221, 228, 236, 0.459);
+    margin: 2vh 0;
+    width: fit-content;
+    overflow: hidden; 
+}
+.three .col-2 input{
+    font-size: 0.7rem;
+    margin-left: 1vh;
+}
+.btn{
+    width: 100%;
+    background-color: rgb(65, 202, 127);
+    border-color: rgb(65, 202, 127);
+    color: white;
+    justify-content: center;
+    padding: 2vh 0;
+    margin-top: 3vh;
+}
+.btn:focus{
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none; 
+}
+.btn:hover{
+    color: white;
+}
+input:focus::-webkit-input-placeholder { 
+    color:transparent; 
+}
+input:focus:-moz-placeholder { 
+    color:transparent; 
+} 
+input:focus::-moz-placeholder { 
+    color:transparent; 
+} 
+input:focus:-ms-input-placeholder { 
+    color:transparent; 
+}
+
+.inputBox{
+	margin: 20px 0 20px 0;
+	text-align: center;
+	font-weight: bold;
+}
