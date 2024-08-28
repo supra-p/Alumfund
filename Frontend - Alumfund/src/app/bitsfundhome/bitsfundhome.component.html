@@ -1,0 +1,186 @@
+<nav class="navbar navbar-expand-lg navbar-light" id="navbar1" >
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/Images/83180-84.png" height="40px" width="40px" alt="LOGO" style="background-color: rgb(157, 182, 190);">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <!-- <a class="nav-link" href="\login">Register</a> -->
+        </li>
+  
+      </ul>
+    </div>
+  
+    <ul class="navbar-nav ml-auto">
+      <li class=" nav-item">
+        <a class="nav-link" id="adminbutton" style="margin-right: 20px;" href="bitsfundlogin" >Faculty</a>
+      </li>
+      
+  </ul>
+  </nav>
+
+  <p id="title"><b>Recent Campaigns</b></p>
+
+  <div class="container">
+<div class="row row-cols-1 row-cols-md-4 g-1">
+    
+    <div class="card" *ngFor="let event of allEvents; let i = index" 
+    style="margin: 20px 5px 5px 8px;">
+        <img src="../../assets/Images/2.jpg" class="card-img-top" style="height: 180px; padding-top: 2px; border-radius: 8px;" alt="Fissure in Sandstone"/>
+        <div class="card-body">
+
+        <table>
+            <tr>
+                <th class="card-title">Title</th>
+                <!-- <td><a href="#!" (click) =  "func()" style=" margin-left: 100px;">View</a></td> -->
+                <!-- <td><img src="../../assets/Images/view.jpg"  height="25px" style=" margin-left: 130px;" /></td> -->
+                <td><input type="image" height="25px" style="margin-left: 190px;" width="25px" src="../../assets/Images/view.jpg" (click)="openPopup(event)" /></td>
+              </tr>
+        </table>
+        <p class="card-text">{{event.title}}</p>
+        <table>
+            <tr>
+                <th style="margin-left: 20px;">Type</th>
+                <th style="padding-left: 80px;">Days left</th>
+            </tr>
+        <tr>
+            <td>
+                <p>{{event.typeOfEvent}}</p>
+            </td>
+            <td>
+                <p style="margin-left: 105px;"> {{diffDaysArr[i]}}</p>
+            </td>
+        </tr>
+    </table>
+
+
+        <div id="progressbar">
+            <div [ngStyle]="{'width':progressBarValues[i]}">
+                <div style="padding-top:10px">
+                    <table>
+                        <tr>
+                            <td><p style="padding-left:0px">${{event.amountReceived}}</p></td>
+                            <td><p style="padding-left: 160px">${{event.targetAmount}}</p></td>                          
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <button type="button" id="contributeButton" class="btn btn-success" (click)="contributeFunc(i)" value="Contribute">Contribute</button>
+        <p style="padding: 10px 0 0 2px;">by: <b>Prof. {{event.empName}}</b></p>
+    </div>
+    </div>
+  </div>  
+
+  
+</div>
+
+<div class="footer">
+    © 2022 Alumfund Pvt Ltd.
+  </div>
+
+
+
+
+  <div
+  class="modal"
+  ng-if = "tempRecordModal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-backdrop">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h4 class="modal-title">Event</h4>
+        </div>
+  
+  
+  
+        <div class="modal-body">
+  
+          <table class="modalTable">
+              
+          <tr>
+                <th>Title</th>
+            </tr>
+  
+            <tr>
+              <td>{{tempRecordModal.title}}</td>
+            </tr>
+
+  <br>
+              <tr>
+                <th>Type of Event</th>
+                <th>Deadline</th>
+
+            </tr>
+
+            <tr>
+              <td>{{tempRecordModal.typeOfEvent}}</td>
+              <td>{{tempRecordModal.deadline}}</td>
+
+          </tr>
+
+            
+  <br>
+
+          <tr>
+            <th>Team Size</th>
+            <th>Target Amount</th>
+
+        </tr>
+
+        <tr>
+          <td>{{tempRecordModal.teamSize}}</td>
+          <td>{{tempRecordModal.targetAmount}}</td>
+
+        </tr>
+        <br>
+      </table>
+        <tr>
+          <th>Introduction</th>
+        </tr>
+
+        <td style="text-align: justify;">{{tempRecordModal.briefDesc}}</td>
+          <!-- <td class="desc">In academic terms, a text is anything that conveys a set of meanings to the person w In academic terms, a text is anything that conveys a set of meanings to the person wIn academic terms, a text is anything that conveys a set of meanings to the person w</td> -->
+
+
+      <br>
+
+          <th>Detailed Description</th>
+
+
+      <tr>
+        <td style="text-align: justify;">{{tempRecordModal.detailDesc}}</td>
+
+        <!-- <td class="desc">In academic terms, a text is anything that conveys a set of meanings to the person who examines it. You might have thought that texts were limited to written materials, such as books, magazines, newspapers, and ‘zines (an informal term for magazine that refers especially to fanzines and webzines). Those items are indeed texts—but so are movies, paintings, television shows, songs, political cartoons, online materials, advertisements, maps, works of art, and even rooms full of people. If we can look at something, explore it, find layers of meaning in it, and draw information and conclusions from it, we’re looking at a text.</td> -->
+
+      </tr>
+
+  
+    
+  
+  
+  
+  </div>
+  
+  
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" 
+                  (click)="closePopup()">
+            Close
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  </div>
+

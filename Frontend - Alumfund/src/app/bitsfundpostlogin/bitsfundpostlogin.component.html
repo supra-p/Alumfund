@@ -1,0 +1,311 @@
+
+<nav class="navbar navbar-expand-lg navbar-light" id="navbar1" >
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/Images/83180-84.png" height="40px" width="40px" alt="LOGO" style="background-color: rgb(157, 182, 190);">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link " (click)="openPopup()">Create</a>
+        </li>
+  
+      </ul>
+    </div>
+  
+    <ul class="navbar-nav ml-auto">
+      <li class=" nav-item">
+        <a class="nav-link" id="logoutbutton" style="margin-right: 20px;" href="" >Logout</a>
+      </li>
+      
+  </ul>
+  </nav>
+
+  <p style="padding-top: 20px; margin-left: 20px; font-size: large;"><b>Hello, Prof. {{loginFacultyName}}</b></p>
+
+  <p class="h2 " style="text-align: center; padding-top: 20px;"><b>Your Events</b></p>
+
+
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-1">
+        
+        <div class="card" *ngFor="let event of eventsUnderFaculty; let i = index"
+        style="margin: 20px 5px 5px 8px;">
+            <img src="../../assets/Images/1.jpg" class="card-img-top" style="height: 180px; padding-top: 2px; border-radius: 8px;" alt="Fissure in Sandstone"/>
+            <div class="card-body">
+    
+            <table>
+                <tr>
+                    <td><h5 class="card-title">Event {{i+1}}</h5></td>
+                    <td><input type="image" height="25px" style="margin-left: 130px;" width="25px" src="../../assets/Images/view.jpg" (click)="openEventPopup(event)" /></td>
+                    <td><input type="image" height="25px" style="margin-left: 1px;" width="25px" src="../../assets/Images/delete.png" (click)="deleteEvent(event)" /></td>
+
+                    <!-- <td><a href=""><img src="../../assets/Images/view.jpg" height="25px" style=" margin-left: 130px;" /></a></td> -->
+                    <!-- <td><a href=""><img src="../../assets/Images/edit.png" height="25px" style=" margin-left: 1px;" /></a></td> -->
+                    <!-- <td><a href=""><img src="../../assets/Images/delete.png" height="25px" style=" margin-left: 1px;" /></a></td> -->
+
+
+                </tr>
+            </table>
+            <p class="card-text">{{event.title}}</p>
+            <table>
+                <tr>
+                    <th style="margin-left: 20px;">Type</th>
+                    <th style="padding-left: 80px;">Deadline</th>
+                    
+
+                </tr>
+            <tr>
+                <td>
+                    <p>{{event.typeOfEvent}}</p>
+                </td>
+                <td>
+                    <p style="margin-left: 70px;"> {{event.deadline}}</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th >Funds Received</th>
+                <th style="padding-left: 100px;">Target</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>${{event.amountReceived}}</p>
+                </td>
+                <td>
+                    <p style="margin-left: 100px;">${{event.targetAmount}}</p>
+                </td>
+            </tr>
+        </table>
+    
+                
+        </div>
+        </div>
+      </div>  
+    
+      
+    </div>
+
+
+<!-- MODAL POPUP -->
+<div
+class="modal"
+ng-if = "tempRecordModal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-backdrop">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <p class="h2 fw-bold" id="modal-header-text">Create Event</p>
+
+          <div >
+           <img src="../../assets/Images/cross.png" (click)= "closePopup()"
+            height="15px" width="15px" >
+          </div>
+      </div>
+
+
+
+      <div class="modal-body">
+          
+<section style="background-color: white;">
+ 
+                <!-- <p class="text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4">Sign up</p> -->
+
+                <form class="mx-1 mx-md-4" #form="ngForm" (ngSubmit)="onSubmit()">
+
+                  <table class="modalTable">
+                 
+                    <tr>
+                      <td class="td1" colspan="2">
+                        <label class="form-label" for="form3Example1c">Title</label>
+                        <input type="text" id="titleEvent" name="title"
+                        [(ngModel)] = "createEvent.title" class="form-control" />
+                      </td>
+                    </tr>
+
+                    
+                      <tr>                                                  
+                          <td class="td1"><p class="form-label" for="form3Example3c">Type</p> 
+                            
+                            <input type="radio" id="type1" name="typeOfEvent" 
+                            [(ngModel)] = "createEvent.typeOfEvent"  value="Research Project">
+                            <label for="type1" id="typelab"> Research Project</label><br>
+
+                            <input type="radio" id="type2" name="typeOfEvent" 
+                            [(ngModel)] = "createEvent.typeOfEvent" value="Students Event">
+                            <label for="type2" id="typelab"> Students Event</label><br>
+
+                            <input type="radio" id="type3" name="typeOfEvent" 
+                            [(ngModel)] = "createEvent.typeOfEvent" value="Campus Infrastructure">
+                            <label for="type3" id="typelab"> Campus Infrastructure</label><br>
+
+                          </td>
+                       
+                          <td class="td1">
+                            <label class="form-label" for="form3Example3c"> Deadline</label>
+                            <input type="date" id="deadline"  name="deadline"
+                            [(ngModel)] = "createEvent.deadline" class="form-control" />
+                          </td>
+                        </tr>
+
+                    <tr>
+                      <td class="td1">
+                        <label class="form-label" for="form3Example1c">Team Size</label>
+                        <input type="text" id="teamSize" name="teamSize"
+                        [(ngModel)] = "createEvent.teamSize" class="form-control" />
+                      </td>
+                    
+                      <td class="td1">
+                        <label class="form-label" for="form3Example3c"> Target Amount</label>
+                        <input type="text" id="targetAmount"  name="targetAmount"
+                        [(ngModel)] = "createEvent.targetAmount" class="form-control" />
+                      </td>
+
+                    </tr>     
+
+
+                    <tr>
+                      <td class="td1" colspan="2">
+                        <label class="form-label" for="form3Example1c">Brief Description</label>
+                        <textarea  id="briefDesc" name="briefDesc"
+                        [(ngModel)] = "createEvent.briefDesc" class="form-control"></textarea>
+                      </td>
+                      <!-- <td></td> -->
+                    </tr>  
+                    <tr>
+                      <td class="td1" colspan="2">
+                        <label class="form-label" for="form3Example3c"> Detail Description</label>
+                        <textarea rows="7"  id="detailDesc"  name="detailDesc"
+                        [(ngModel)] = "createEvent.detailDesc" class="form-control" ></textarea>
+                      </td>
+
+                    </tr>  
+
+                    
+                  </table>
+                  <div class=" modal-footer">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                  </div>
+                </form>
+
+        </section>      
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+    
+<!-- <div class="footer">
+  © 2022 Alumfund Pvt Ltd.
+</div>
+  -->
+
+
+
+  <div
+  class="modal"
+  ng-if = "tempRecordModal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle1}">
+  <div class="modal-backdrop" >
+    <div class="modal-dialog modal-lg" role="document" style=" margin-right: 27%;">
+      <div class="modal-content"  style=" margin-right: 27%;">
+  
+        <div class="modal-header">
+          <h4 class="modal-title">Event</h4>
+        </div>
+  
+  
+  
+        <div class="modal-body">
+  
+          <table class="modalTable">
+              
+          <tr>
+                <th>Title</th>
+            </tr>
+  
+            <tr>
+              <td>{{tempRecordModal.title}}</td>
+            </tr>
+
+  <br>
+              <tr>
+                <th>Type of Event</th>
+                <th>Deadline</th>
+
+            </tr>
+
+            <tr>
+              <td>{{tempRecordModal.typeOfEvent}}</td>
+              <td>{{tempRecordModal.deadline}}</td>
+
+          </tr>
+
+            
+  <br>
+
+          <tr>
+            <th>Team Size</th>
+            <th>Target Amount</th>
+
+        </tr>
+
+        <tr>
+          <td>{{tempRecordModal.teamSize}}</td>
+          <td>{{tempRecordModal.targetAmount}}</td>
+
+        </tr>
+        <br>
+      </table>
+        <tr>
+          <th>Introduction</th>
+        </tr>
+
+        <td style="text-align: justify;"> {{tempRecordModal.briefDesc}}</td>
+          <!-- <td class="desc">In academic terms, a text is anything that conveys a set of meanings to the person w In academic terms, a text is anything that conveys a set of meanings to the person wIn academic terms, a text is anything that conveys a set of meanings to the person w</td> -->
+
+
+      <br>
+
+          <th>Detailed Description</th>
+
+
+      <tr>
+        <td style="text-align: justify;">{{tempRecordModal.detailDesc}}</td>
+
+        <!-- <td class="desc">In academic terms, a text is anything that conveys a set of meanings to the person who examines it. You might have thought that texts were limited to written materials, such as books, magazines, newspapers, and ‘zines (an informal term for magazine that refers especially to fanzines and webzines). Those items are indeed texts—but so are movies, paintings, television shows, songs, political cartoons, online materials, advertisements, maps, works of art, and even rooms full of people. If we can look at something, explore it, find layers of meaning in it, and draw information and conclusions from it, we’re looking at a text.</td> -->
+
+      </tr>
+
+  
+    
+  
+  
+  
+  </div>
+  
+  
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" 
+                  (click)="closeEventPopup()">
+            Close
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  </div>
+

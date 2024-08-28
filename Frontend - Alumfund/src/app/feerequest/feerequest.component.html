@@ -1,0 +1,492 @@
+<html>
+  <body>
+<div id="aboverequestform">
+  <h1 id="scholarshiptext">Scholarship<br> Acceptance Pledge</h1>
+<div class="container" id="pled">
+  <table class="pl"><tr>
+  <p id="pledge">
+    As a student who is taking funds from alumni to help pay for my education, I want to express my gratitude for your support. Your contributions have made it possible for me to pursue my studies and achieve my goals, and I am deeply grateful for your generosity.
+
+In return for the support that I have received, I am making a pledge to give back to my college or university once I am financially able.<br><br> I believe in the importance of supporting future generations of students, and I want to do my part to ensure that my alma mater continues to provide a high-quality education for years to come.
+
+In making this pledge, I am committing to support the future of my college or university in whatever ways I can. This may include making financial contributions, volunteering my time and expertise, and staying connected with the community through alumni events and other activities.
+
+<br><br>I understand that making a pledge is a personal commitment, and I am fully committed to supporting the future of my alma mater. I am grateful for the opportunities that my education has provided, and I want to ensure that future students have the same opportunities that I did.
+
+Thank you again for your support. I am deeply grateful for your generosity, and I am committed to giving back and supporting the future of my college or university.
+</p></tr></table> 
+    <div id="pledgebutton"><a href="/feerequest/#sas" ><button class="btn btn-success"> I Accept </button></a></div>
+</div>
+</div>
+
+
+
+
+<div id="sas">
+<p class="text-center h3 fw-bold mb-4 mx-1 mx-md-4 mt-4">Request form</p>
+
+<div class="tableform">
+<form class="mx-1 mx-md-8" #form="ngForm" (ngSubmit)="onSubmit()">
+<table class="table">
+    <tr>
+        <td><p style="font-weight: bold ; padding: 10px 0 0 15px;">Personal Information</p></td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example1c">Full Name</label>
+                <input type="text" id="fullName" name="fullName"  [(ngModel)]="requestFormObj.personalInfo.fullName " class="form-control" />
+              </div>
+            </div>
+
+        </td>
+
+        
+        <td>
+          <p style="padding-left: 16px;">Please upload Income Certificate document
+          <input #imageInput type="file" id="myFile" name="myFile"  accept=".jpg,.png"
+          (change)="onChange($event)"
+          style="padding-top: 7px;"></p>
+        </td>
+      <td>
+          
+              <input type="button" id="uploadbutton" (click)="onUpload()" value="Upload"> 
+      </td>
+
+      <div>
+        <output *ngIf=imageResponseMessage class="success"><b>{{imageResponseMessage}}</b></output>
+    </div>
+    <br>
+
+        
+    </tr>
+
+<tr>
+  <div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=retrievedImage>
+            <img [src]="retrievedImage">
+        </div>
+    </div>
+</div>
+</tr>
+
+
+    <tr>
+      <td>
+          <div class="d-flex flex-row align-items-center mb-4">
+            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="form3Example1c">Aadhar number</label>
+              <input type="text" id="aadhar" name="aadharNumber" [(ngModel)]="requestFormObj.personalInfo.aadharNumber"
+               class="form-control" />
+            </div>
+          </div>
+
+      </td>
+
+      <td>
+          
+      <div class="d-flex flex-row align-items-center mb-4">
+      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+      <div class="form-outline flex-fill mb-0">
+          <label class="form-label" for="form3Example3c">Pan card number </label>
+          <input type="text" id="pan"  name="panCardNumber" [(ngModel)]="requestFormObj.personalInfo.panCardNumber"
+          class="form-control" />
+      </div>
+      </div>
+
+      </td>
+
+
+
+  </tr>
+
+    <tr>
+      <td>
+          <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                  
+                <label class="form-label" for="form3Example3c">Physically Disabled</label><br>
+                <input type="radio" id="type1" name="physicallyDisabled" [(ngModel)]="requestFormObj.personalInfo.physicallyDisabled"
+                  value="Yes">
+                  <label for="type1" id="typelab"> Yes</label><br>
+
+                  <input type="radio" id="type2" name="physicallyDisabled" [(ngModel)]="requestFormObj.personalInfo.physicallyDisabled"
+                  value="No">
+                  <label for="type2" id="typelab"> No</label><br>
+            </div>
+                  
+          </div>
+      </td>   
+
+      <td>
+          <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                  
+                <label class="form-label" for="form3Example3c"><i>Please select any one</i></label><br>
+                <div style="margin-left: 20px;">
+                <input type="radio" id="catergory1" name="typeOfStudent"  [(ngModel)]="requestFormObj.personalInfo.typeOfStudent"
+                  value="Orphan">
+                  <label for="catergory1" id="typelab"> Orphan</label><br>
+
+                  <input type="radio" id="catergory2" name="typeOfStudent"  [(ngModel)]="requestFormObj.personalInfo.typeOfStudent"
+                  value="Parents Unemployed">
+                  <label for="catergory2" id="typelab"> Parents Unemployed</label><br>
+
+
+                  <input type="radio" id="catergory3" name="typeOfStudent"  [(ngModel)]="requestFormObj.personalInfo.typeOfStudent"
+                  value="Former child soldier">
+                  <label for="catergory3" id="typelab"> Former child soldier</label><br>
+
+
+                  <input type="radio" id="catergory4" name="typeOfStudent"  [(ngModel)]="requestFormObj.personalInfo.typeOfStudent"
+                  value="First in your family to attend college">
+                  <label for="catergory4" id="typelab"> First in your family to attend college</label><br>
+
+                  <input type="radio" id="catergory5" name="typeOfStudent"  [(ngModel)]="requestFormObj.personalInfo.typeOfStudent"
+                  value="None">
+                  <label for="catergory5" id="typelab"> None</label><br>
+              </div>
+            </div>
+                  
+          </div>
+      </td>
+  </tr>
+
+
+    <tr>
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example1c">Number of persons in your household (including yourself)</label>
+                <input type="text" id="numberOfPersonsInHousehold" name="numberOfPersonsInHousehold" [(ngModel)]="requestFormObj.personalInfo.numberOfPersonsInHousehold"
+                 class="form-control" />
+              </div>
+            </div>
+
+        </td>
+
+        <td>
+            
+        <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="form3Example3c">Total household income (in INR) </label>
+            <input type="text" id="totalHouseholdIncome"  name="totalHouseholdIncome" [(ngModel)]="requestFormObj.personalInfo.totalHouseholdIncome"
+            class="form-control" />
+        </div>
+        </div>
+
+        </td>
+
+
+
+    </tr>
+
+   
+
+    
+
+    <tr>
+        <td colspan="2"> <hr style="margin-left: 10px;"> </td>
+     
+     </tr>
+
+    <tr>
+        <td>
+        <p style="font-weight: bold ; padding: 10px 0 0 15px;">Acedemic Information</p>
+    </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example4cd">10th Percentage</label>
+                <input type="text" id="tenthPerc" name="tenthPerc" [(ngModel)]="requestFormObj.academicInfo.tenthPerc"
+                 class="form-control" />
+              </div>
+            </div>                 
+
+        </td>
+
+        <td>
+
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example4c">12th Percentage</label>
+                  <input type="text" id="twelfthPerc"  name="twelfthPerc" [(ngModel)]="requestFormObj.academicInfo.twelfthPerc"
+                   class="form-control" />
+                </div>
+              </div>
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    
+                  <label class="form-label" >Applying for UG/PG:</label>
+                  <input type="radio" id="ug" name="typeOfDegree" (click) = onClickRadio() [(ngModel)] = "requestFormObj.academicInfo.typeOfDegree"
+                    value="UG">
+                    <label for="ug" id="typelab"> UG </label>
+
+                    <input type="radio" id="pg" name="typeOfDegree"  (click) = onClickRadio() [(ngModel)] = "requestFormObj.academicInfo.typeOfDegree"
+                    value="PG">
+                    <label for="pg" id="typelab"> PG</label><br>
+              </div>
+                    
+            </div>
+        </td>
+
+    
+        
+        <td>
+
+            <div *ngIf = "this.requestFormObj.academicInfo.typeOfDegree == 'UG'">
+              <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example4cd">12th Ranking  </label>
+                        <input type="text" id="highestEducationValue" name="highestEducationValue" [(ngModel)] = "requestFormObj.academicInfo.highestEducationValue"
+                        class="form-control" />
+                    </div>
+              </div> 
+          </div>  
+
+
+          <div *ngIf = "this.requestFormObj.academicInfo.typeOfDegree == 'PG'">
+            <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="form3Example4cd"> UG Percentage</label>
+                      <input type="text" id="highestEducationValue" name="highestEducationValue" [(ngModel)] = "requestFormObj.academicInfo.highestEducationValue"
+                      class="form-control" />
+                  </div>
+            </div> 
+        </div> 
+
+        </td>
+        
+
+    <tr>
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    
+                  <label class="form-label" >GATE/Bits HD:</label>
+                  <input type="radio" id="gate" name="exam"  [(ngModel)] = "requestFormObj.academicInfo.typeOfEntranceExam"
+                    value="GATE">
+                    <label for="gate" id="typelab"> GATE</label>
+
+                    <input type="radio" id="bits" name="exam"  [(ngModel)] = "requestFormObj.academicInfo.typeOfEntranceExam"
+                    value="Bits HD">
+                    <label for="bits" id="typelab"> Bits HD</label><br>
+              </div>
+                    
+            </div>
+        </td>
+
+        <td>
+                
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example4cd">Marks obtained in {{requestFormObj.academicInfo.typeOfEntranceExam}} </label>
+                  <input type="text" id="marksObtainedInExam" name="marksObtainedInExam" [(ngModel)] = "requestFormObj.academicInfo.marksObtainedInExam"
+                   class="form-control" />
+                </div>
+              </div> 
+        </td>
+    </tr>
+
+    <tr>
+
+      <td>
+
+          <div class="d-flex flex-row align-items-center mb-4">
+            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="form3Example4cd">Course of study offered</label>
+              <input type="text" id="course" name="course"  [(ngModel)] = "requestFormObj.academicInfo.course"
+               class="form-control" />
+            </div>
+          </div>   
+</td>   
+
+<td>
+
+  <div class="d-flex flex-row align-items-center mb-4">
+    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+    <div class="form-outline flex-fill mb-0">
+      <label for="duration" >Course duration (in years):</label>
+
+      <select name="duration" id="duration" [(ngModel)] = "requestFormObj.academicInfo.courseDuration" style="margin-left: 20px;">
+        <option value=1 >1</option>
+        <option value=2  >2</option>
+        <option value=3 >3</option>
+        <option value=4 >4</option>
+        <option value=5 >5</option>
+        <option value=6 >6</option>
+      </select>
+    </div>
+  </div> 
+  
+</td>
+     
+  </tr>
+
+    <tr>
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example4cd">SOP</label>
+                  <textarea rows="4" cols="65" name="sop" [(ngModel)] = "requestFormObj.academicInfo.sop"></textarea>
+                </div>
+              </div> 
+        </td>
+
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example4cd">Acedemic Accomplishments (Publications/Hackthons/Olympiads etc.)</label>
+                  <textarea rows="4" cols="65" name="academicAccomplishment" [(ngModel)] = "requestFormObj.academicInfo.academicAccomplishment" ></textarea>
+                </div>
+              </div> 
+        </td>
+    </tr>
+
+<tr>
+   <td colspan="2"> <hr style="margin-left: 10px;"> </td>
+
+</tr>
+
+    <tr>
+        <td>
+        <p style="font-weight: bold ; padding: 10px 0 0 15px;">Contact Information</p>
+    </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example4cd">Mobile Number</label>
+                <input type="text" id="mobileNumber" name="mobileNumber" [(ngModel)] = "requestFormObj.contactDetails.mobileNumber"
+                 class="form-control" />
+              </div>
+            </div>                 
+
+        </td>
+
+        <td>
+
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example3c"> Email</label> 
+                    <input type="email" id="email"  name="email" [(ngModel)] = "requestFormObj.contactDetails.email"
+                    class="form-control" />
+                </div>
+                </div>
+        </td>
+    </tr>
+    <tr>
+        
+        <td>
+
+            
+        <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="form3Example4cd">Guardian's Mobile Number</label>
+            <input type="text" id="guardianMobileNumber" name="guardianMobileNumber" [(ngModel)] = "requestFormObj.contactDetails.guardianMobileNumber"
+            class="form-control" />
+        </div>
+        </div>   
+        </td>
+
+        <td>
+
+            
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example4cd">Home Phone Number</label>
+                <input type="text" id="homeMobileNumber" name="homeMobileNumber" [(ngModel)] = "requestFormObj.contactDetails.homeMobileNumber"
+                 class="form-control" />
+              </div>
+            </div>   
+</td>  
+       
+    </tr>
+
+    <tr>
+        <td>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example4cd">Present Address</label>
+                  <textarea rows="4" cols="65" name="presentAddress" [(ngModel)] = "requestFormObj.contactDetails.presentAddress"></textarea>
+                </div>
+              </div> 
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"> <hr style="margin-left: 10px;"> </td>
+     
+     </tr>
+    <tr>
+        <td>
+        <p style="font-weight: bold ; padding: 10px 0 0 15px;">Future Ambitions (Intrests/Goals/Plans)</p>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <textarea rows="5" style="width: 100%;" name="futureGoals"  [(ngModel)] = "requestFormObj.academicInfo.futureGoals" ></textarea>
+                </div>
+              </div> 
+        </td>
+    </tr>
+
+
+</table>
+          <div>
+            <button type="submit" id="submit" class="btn btn-success" >Submit</button>
+          </div>
+</form>
+</div>
+
+
+
+</div>
+
+<div class="footer">
+  © 2022 Alumfund Pvt Ltd.
+</div>
+
+</body>
+</html>
+                  
+        
+

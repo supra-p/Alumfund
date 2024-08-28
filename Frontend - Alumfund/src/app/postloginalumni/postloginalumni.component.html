@@ -1,0 +1,420 @@
+<nav class="navbar navbar-expand-lg navbar-light" id="navbar1">
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+           <a href="" id="logoutbutton" class="nav-link">Logout</a> 
+      </li>
+    </ul>
+</nav>
+
+<body>
+  <div class="supreme-container">
+<h1 style="text-align: center; padding-top: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; ">Student Fee Requests</h1>
+<br>
+<div class="container">
+
+  <div *ngFor="let record of requestFormData">
+
+  <article>
+    <h2>{{record.personalInfo.fullName}}</h2>
+    <div class="actions">
+      <input type="button" (click)="openPopup(record)" id="viewProfileButton" class="btn btn-primary" value="View Profile"/>  
+      <input type="button" (click)="payFee(record)" id="payButton" class="btn btn-success" value="Fund Student" />  
+    </div>
+    <!-- <div class="description">{{record.academicInfo.sop}}</div> -->
+
+    <table>
+      <tr>
+        <td class="td1">
+          <img src="../../assets/Images/dp.png" id="images" >
+        </td>
+        <td class="td1">
+            <tr>
+              <th>Applying for:</th>
+              <td class="td1">{{record.academicInfo.typeOfDegree}}</td>
+            </tr>
+            <tr>
+              <th>Course of study offered:</th>
+              <td class="td1">{{record.academicInfo.course}}</td>
+            </tr>
+            <tr>
+              <th>Course duration:</th>
+              <td class="td1">{{record.academicInfo.courseDuration}} years</td>
+
+            </tr>
+           
+        </td>
+        <td class="td1">
+          <tr>
+            <th>Candidate ID:</th>
+            <td class="td1">{{record.academicInfo.id}}</td>
+
+          </tr>
+          <tr>
+            <th>Student Category:</th>
+            <td class="td1">{{record.personalInfo.typeOfStudent}}</td>
+
+          </tr>
+          <tr>
+            <th>Physically Disabled:</th>
+            <td class="td1">{{record.personalInfo.physicallyDisabled}}</td>
+          </tr>
+      </td>
+    </tr>
+    <tr>
+      <td class="td1">
+        <tr>
+          <th>Brief SOP:</th>
+          <td class="td1">{{record.academicInfo.sop}}</td>
+        </tr>
+        
+    </td>
+  </tr>
+  </table>
+</article>
+
+
+<div
+class="modal"
+ng-if = "tempRecordModal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-backdrop">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Profile</h4>
+      </div>
+
+
+
+      <div class="modal-body">
+        <img src="../../assets/Images/dp.png" id="images1" style="margin-left: 43%;">
+
+        <table class="modalTable">
+          <tr>
+            <td>
+              <p style="font-weight: bold ; padding: 15px 0 0 0;">Personal Information</p>
+            </td>
+          </tr>
+
+          <tr>
+              <th>Full Name</th>
+              <th>Aadhar number</th>
+              <th>Pan card number</th>
+          </tr>
+
+          <tr>
+            <td>{{tempRecordModal.personalInfo.fullName}}</td>
+            <td>{{tempRecordModal.personalInfo.aadharNumber}}</td>
+            <td>{{tempRecordModal.personalInfo.panCardNumber}}</td>
+          </tr>
+<br>
+          <tr>
+            <th>Physically Disabled</th>
+            <th>Student Type</th>
+            <!-- <th>Pan card number</th> -->
+        </tr>
+
+        <tr>
+          <td>{{tempRecordModal.personalInfo.physicallyDisabled}}</td>
+          <td>{{tempRecordModal.personalInfo.typeOfStudent}}</td>
+          <!-- <td>{{tempRecordModal.personalInfo.panCardNumber}}</td> -->
+        </tr>
+
+<br>
+        <tr>
+            <th>Number of persons in household</th>
+            <th>Total household income (in INR)</th>
+        </tr>
+
+        <tr>
+          <td>{{tempRecordModal.personalInfo.numberOfPersonsInHousehold}}</td>
+          <td>{{tempRecordModal.personalInfo.totalHouseholdIncome}}</td>
+        </tr>
+
+<hr>
+
+<tr>
+  <td>
+    <p style="font-weight: bold ; padding: 15px 0 0 0;">Acedemic Information</p>
+  </td>
+</tr>
+
+<tr>
+    <th>10th Percentage</th>
+    <th>12th Percentage</th>
+    <th>Applying for</th>
+</tr>
+
+<tr>
+  <td>{{tempRecordModal.academicInfo.tenthPerc}}</td>
+  <td>{{tempRecordModal.academicInfo.twelfthPerc}}</td>
+  <td>{{tempRecordModal.academicInfo.typeOfDegree}}</td>
+</tr>
+<br>
+<tr>
+  <th>Entrance Test</th>
+  <th>Marks obtained</th>
+  <th>Course of study offered</th>
+</tr>
+
+<tr>
+<td>{{tempRecordModal.academicInfo.typeOfEntranceExam}}</td>
+<td>{{tempRecordModal.academicInfo.marksObtainedInExam}}</td>
+<td>{{tempRecordModal.academicInfo.course}}</td>
+</tr>
+
+<br>
+<tr>
+  <th>SOP</th>
+  <th>Acedemic Accomplishments</th>
+</tr>
+
+<tr>
+<td>{{tempRecordModal.academicInfo.sop}}</td>
+<td>{{tempRecordModal.academicInfo.academicAccomplishment}}</td>
+</tr>
+
+<hr>
+<tr>
+  <td>
+    <p style="font-weight: bold ; padding: 15px 0 0 0;">Contact Information</p>
+  </td>
+</tr>
+
+<tr>
+    <th>Mobile Number</th>
+    <th>Email</th>
+    <th>Guardian's Mobile Number</th>
+</tr>
+
+<tr>
+  <td>{{tempRecordModal.contactDetails.mobileNumber}}</td>
+  <td>{{tempRecordModal.contactDetails.email}}</td>
+  <td>{{tempRecordModal.contactDetails.guardianMobileNumber}}</td>
+</tr>
+<br>
+<tr>
+  <th>Home Phone Number</th>
+  <th>Present Address</th>
+</tr>
+
+<tr>
+<td>{{tempRecordModal.contactDetails.homeMobileNumber}}</td>
+<td>{{tempRecordModal.contactDetails.presentAddress}}</td>
+</tr>
+
+<br>
+<hr style="width: 300px;">
+<tr>
+  <th>
+    <p style="font-weight: bold ; padding: 15px 0 0 0;">Future Ambitions (Intrests/Goals/Plans)</p>
+  </th>
+
+    <td colspan="3" style="text-align: justify;">{{tempRecordModal.academicInfo.futureGoals}}
+    </td>
+  </tr>
+
+</table>
+</div>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" 
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+<!-- 
+
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-backdrop">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Profile</h4>
+      </div>
+
+
+
+      <div class="modal-body">
+        <img src="../../assets/Images/dp.png" id="images1" style="margin-left: 43%;">
+
+        <table class="modalTable">
+          <tr>
+            <td>
+              <p style="font-weight: bold ; padding: 15px 0 0 0;">Personal Information</p>
+            </td>
+          </tr>
+
+          <tr>
+              <th>Full Name</th>
+              <th>Aadhar number</th>
+              <th>Pan card number</th>
+          </tr>
+
+          <tr>
+            <td>{{record.personalInfo.fullName}}</td>
+            <td>{{tempRecordModal.personalInfo.aadharNumber}}</td>
+            <td>{{tempRecordModal.personalInfo.panCardNumber}}</td>
+          </tr>
+<br>
+          <tr>
+            <th>Physically Disabled</th>
+            <th>Student Type</th>
+            <th>Pan card number</th>
+        </tr>
+
+        <tr>
+          <td>{{tempRecordModal.personalInfo.physicallyDisabled}}</td>
+          <td>{{tempRecordModal.personalInfo.typeOfStudent}}</td>
+          <td>{{tempRecordModal.personalInfo.panCardNumber}}</td>
+        </tr>
+
+<br>
+          <tr>
+            <th>Number of persons in household</th>
+            <th>Total household income (in INR)</th>
+        </tr>
+
+        <tr>
+          <td>{{tempRecordModal.personalInfo.numberOfPersonsInHousehold}}</td>
+          <td>{{tempRecordModal.personalInfo.totalHouseholdIncome}}</td>
+        </tr>
+
+<hr>
+
+<tr>
+  <td>
+    <p style="font-weight: bold ; padding: 15px 0 0 0;">Acedemic Information</p>
+  </td>
+</tr>
+
+<tr>
+    <th>10th Percentage</th>
+    <th>12th Percentage</th>
+    <th>Applying for</th>
+</tr>
+
+<tr>
+  <td>{{tempRecordModal.academicInfo.tenthPerc}}</td>
+  <td>{{tempRecordModal.academicInfo.twelfthPerc}}</td>
+  <td>{{tempRecordModal.academicInfo.typeOfDegree}}</td>
+</tr>
+<br>
+<tr>
+  <th>Entrance Test</th>
+  <th>Marks obtained</th>
+  <th>Course of study offered</th>
+</tr>
+
+<tr>
+<td>{{tempRecordModal.academicInfo.typeOfEntranceExam}}</td>
+<td>{{tempRecordModal.academicInfo.marksObtainedInExam}}</td>
+<td>{{tempRecordModal.academicInfo.course}}</td>
+</tr>
+
+<br>
+<tr>
+  <th>SOP</th>
+  <th>Acedemic Accomplishments</th>
+</tr>
+
+<tr>
+<td>{{tempRecordModal.academicInfo.sop}}</td>
+<td>{{tempRecordModal.academicInfo.academicAccomplishment}}</td>
+</tr>
+
+<hr>
+<tr>
+  <td>
+    <p style="font-weight: bold ; padding: 15px 0 0 0;">Contact Information</p>
+  </td>
+</tr>
+
+<tr>
+    <th>Mobile Number</th>
+    <th>Email</th>
+    <th>Guardian's Mobile Number</th>
+</tr>
+
+<tr>
+  <td>Full Name</td>
+  <td>Aadhar number</td>
+  <td>Pan card number</td>
+</tr>
+<br>
+<tr>
+  <th>Home Phone Number</th>
+  <th>Present Address</th>
+</tr>
+
+<tr>
+<td>Full Name</td>
+<td>Aadhar number</td>
+</tr>
+
+<br>
+<hr>
+<tr>
+  <td>
+    <p style="font-weight: bold ; padding: 15px 0 0 0;">Future Ambitions (Intrests/Goals/Plans)</p>
+  </td>
+</tr>
+
+</table>
+</div>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" 
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+ -->
+
+
+</body>
+
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+<!-- <div class="container mt-5 d-flex justify-content-center">
+
+	<div class="card p-4">
+
+		<div class="d-flex justify-content-between align-items-center">
+
+			<h5 class="total-amount">Enter Amount</h5>
+			<div class="amount-container"><span class="amount-text"><span class="dollar-sign">$ </span><input type="text"  [(ngModel)] = "amountEntered"  style="width: 60px;"/></span></div>
+				
+		</div>
+
+
+		<div class="pt-4">
+			<label class="d-flex justify-content-between"> <span class="label-text label-text-cc-number">CARD NUMBER</span><img src="https://img.icons8.com/dusk/64/000000/visa.png" width="30" class="visa-icon" /></label>
+			<input type="tel" name="credit-number" class="form-control credit-card-number" maxlength="19"  placeholder="Card number">
+		</div>
+
+
+		<div class="d-flex justify-content-between pt-4">
+			
+			<div>
+				<label><span class="label-text">EXPIRY</span>	</label>
+				<input type="date" name="expiry-date" class="form-control expiry-class" placeholder="MM / YY">
+		
+			</div>
+
+			<div>
+				<label><span class="label-text">CVV</span></label>
+				<input type="password" name="cvv-number" class="form-control cvv-class" maxlength="3" pattern="\d*">
+			
+			</div>
+
+		</div>
+
+
+
+		<div class="d-flex justify-content-between pt-5 align-items-center">
+			
+			<button type="button" class="btn cancel-btn">Cancel</button>
+
+			<button type="button" class="btn payment-btn" (click)="onSubmit()" >Make Payment</button>
+
+		</div>
+		
+
+
+
+	</div>
+	
+</div> -->
+
+
+
+<div class="card mt-50 mb-50">
+	<div class="card-title mx-auto">
+			Payment Gateway	</div>
+
+	<div class="inputBox">
+		<span>Cards Accepted :</span>
+		<img src="../../assets/Images/card_img.png" alt="">
+	</div>
+	
+	<form #form="ngForm" (ngSubmit)="onProceed()">
+		
+		<div class="row-1">
+			<div class="row row-2">
+				<span id="card-inner">Card holder name</span>
+			</div>
+			<div class="row row-2">
+				<input type="text" placeholder="Bojan Viner">
+			</div>
+		</div>
+
+		<div class="row three">
+			<div class="col-7">
+				<div class="row-1">
+					<div class="row row-2">
+						<span id="card-inner">Card number</span>
+					</div>
+					<div class="row row-2">
+						<input type="text" placeholder="5134-5264-4986">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-5">
+				<div class="row-1">
+
+				<div class="row row-3">
+					<span id="card-inner">Expiry Month</span>
+				</div>
+				<div class="row row-3">
+					<input type="text" placeholder="January">
+				</div></div>
+				<!-- <input type="text" placeholder="Exp. date"> -->
+			</div>
+		</div>
+
+		<div class="row three">
+			<div class="col-7">
+
+			<div class="col-7">
+				<!-- <input type="text" placeholder="CVV"> -->
+				<div class="row-1">
+					<div class="row row-3">
+						<span id="card-inner">Expiry Year</span>
+					</div>
+					<div class="row row-3">
+						<input type="text" placeholder="20XX">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-5">
+				<!-- <input type="text" placeholder="CVV"> -->
+				<div class="row-1">
+					<div class="row row-2">
+						<span id="card-inner">CVV </span>
+					</div>
+					<div class="row row-2">
+						<input type="password" placeholder="***"
+						style="text-align: center;">
+					</div>
+				</div>
+			</div></div>
+
+
+			<div class="col-5">
+				<!-- <input type="text" placeholder="CVV"> -->
+				<div class="row-1">
+					<div class="row row-2">
+						<span id="card-inner">Contribution</span>
+					</div>
+					<div class="row row-2">
+						<input type="text" [(ngModel)]="amountEntered" name="amountEntered" placeholder="$">	
+					</div>
+				</div>
+			</div>
+		</div>
+		<button class="btn d-flex mx-auto" ><b>Proceed</b></button>
+	</form>
+</div>
